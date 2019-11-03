@@ -16,11 +16,11 @@ connection.connect(function(error) {
     console.log("Conexión satisfactoria");
 });
 
-var sql = "CREATE TABLE alumnos (nombre VARCHAR(255), edad INT)";
+/*var sql = "CREATE TABLE alumnos (nombre VARCHAR(255), edad INT)";
 connection.query(sql, function (error, result) {
   if (error) return console.error(error);
   console.log("Tabla creada");
-});
+});*/
 
 const alumno = {
     nombre : 'Carlos',
@@ -33,11 +33,23 @@ connection.query('INSERT INTO alumnos SET ?', alumno, (error, results, fields) =
   }
   connection.end();
 });
-var query = connection.query('SELECT * FROM alumnos WHERE nombre=?', alumno.nombre, (error, result, fields) => {
+
+const query = connection.query(
+  'SELECT * FROM alumnos WHERE nombre=?',alumno.nombre, (error, result, fields) => {
     if (error) {
         return console.error('Ha ocurrido un error al ejecutar la consulta: ' + error.message + " " + error.sql)
     }
     console.log(result);
   })
-  console.log(query.sql);
+  console.log(query.sql); // POdemos registrar la consulta resultante con query.sql
+
   
+  connection.query('DELETE FROM alumnos WHERE nombre=?', alumno.nombre, (error, result, fields) => {
+    if (error) {
+        return console.error('Ha ocurrido un error al ejecutar la consulta: ' + error.message + " " + error.sql)
+    }
+    console.log("Filas afectadas: " + result.affectedRows);
+  })
+
+  
+
