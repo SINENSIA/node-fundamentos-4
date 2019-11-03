@@ -9,7 +9,6 @@ const dbName = 'curso';
 const connection = mongo.connect(url);
 
 connection
-connection
 .then(function (client) { 
     const db = client.db(dbName);
     // Código a ejecutar usando db

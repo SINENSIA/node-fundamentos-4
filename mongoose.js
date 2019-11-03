@@ -61,5 +61,6 @@ Alumno.find(function (err, alumnos) {
     console.log(alumnos);
 });
 
-Alumno.find({ edad: '37' }, (results) => console.log("Resultado " + results));
+
+
 
